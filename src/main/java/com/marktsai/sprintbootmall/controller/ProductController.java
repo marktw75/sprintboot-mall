@@ -1,5 +1,6 @@
 package com.marktsai.sprintbootmall.controller;
 
+import com.marktsai.sprintbootmall.constant.ProductCategory;
 import com.marktsai.sprintbootmall.dto.ProductRequest;
 import com.marktsai.sprintbootmall.model.Product;
 import com.marktsai.sprintbootmall.service.ProductService;
@@ -24,8 +25,11 @@ public class ProductController {
     }
 
     @GetMapping("/products")
-    public ResponseEntity<List<Product>> getAllProducts() {
-        List<Product> productList = productService.getProducts();
+    public ResponseEntity<List<Product>> getAllProducts(
+            @RequestParam(required = false) ProductCategory category,
+            @RequestParam(required = false) String search
+    ) {
+        List<Product> productList = productService.getProducts(category, search);
 
         return ResponseEntity.status(HttpStatus.OK).body(productList);
     }
