@@ -1,6 +1,7 @@
 package com.marktsai.sprintbootmall.controller;
 
 import com.marktsai.sprintbootmall.constant.ProductCategory;
+import com.marktsai.sprintbootmall.dto.ProductQueryParams;
 import com.marktsai.sprintbootmall.dto.ProductRequest;
 import com.marktsai.sprintbootmall.model.Product;
 import com.marktsai.sprintbootmall.service.ProductService;
@@ -29,7 +30,11 @@ public class ProductController {
             @RequestParam(required = false) ProductCategory category,
             @RequestParam(required = false) String search
     ) {
-        List<Product> productList = productService.getProducts(category, search);
+        ProductQueryParams productQueryParams = new ProductQueryParams();
+        productQueryParams.setCategory(category);
+        productQueryParams.setSearch(search);
+
+        List<Product> productList = productService.getProducts(productQueryParams);
 
         return ResponseEntity.status(HttpStatus.OK).body(productList);
     }

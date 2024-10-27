@@ -2,6 +2,7 @@ package com.marktsai.sprintbootmall.service.impl;
 
 import com.marktsai.sprintbootmall.constant.ProductCategory;
 import com.marktsai.sprintbootmall.dao.ProductDao;
+import com.marktsai.sprintbootmall.dto.ProductQueryParams;
 import com.marktsai.sprintbootmall.dto.ProductRequest;
 import com.marktsai.sprintbootmall.model.Product;
 import com.marktsai.sprintbootmall.service.ProductService;
@@ -17,8 +18,8 @@ public class ProductServiceImpl implements ProductService {
     private ProductDao productDao;
 
     @Override
-    public List<Product> getProducts(ProductCategory category, String search) {
-        return productDao.getProducts(category, search);
+    public List<Product> getProducts(ProductQueryParams productQueryParams) {
+        return productDao.getProducts(productQueryParams);
     }
 
     @Override
