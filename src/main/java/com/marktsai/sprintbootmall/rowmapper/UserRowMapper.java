@@ -17,6 +17,6 @@ public class UserRowMapper implements RowMapper {
         user.setCreatedDate(resultSet.getTimestamp("created_date"));
         user.setLastModifiedDate(resultSet.getTimestamp("last_modified_date"));
 
-        return null;
+        return user;
     }
 }
