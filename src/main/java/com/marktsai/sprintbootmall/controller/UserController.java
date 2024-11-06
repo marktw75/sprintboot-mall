@@ -1,5 +1,6 @@
 package com.marktsai.sprintbootmall.controller;
 
+import com.marktsai.sprintbootmall.dto.UserLoginRequest;
 import com.marktsai.sprintbootmall.dto.UserRegisterRequest;
 import com.marktsai.sprintbootmall.model.User;
 import com.marktsai.sprintbootmall.service.UserService;
@@ -24,5 +25,12 @@ public class UserController {
         User user = userService.getUserById(userId);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
+    }
+
+    @PostMapping("/users/login")
+    public ResponseEntity<User> login(@RequestBody @Valid UserLoginRequest userLoginRequest) {
+        User user = userService.login(userLoginRequest);
+
+        return ResponseEntity.status(HttpStatus.OK).body(user);
     }
 }
